@@ -1,0 +1,47 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: api } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: api/package-lock.json }
+      - run: npm ci
+      - run: npx nest build
+      - run: npm test
+      - run: npm audit --omit=dev --audit-level=high
+
+  api-postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: { POSTGRES_USER: helpdesk, POSTGRES_PASSWORD: helpdesk, POSTGRES_DB: helpdesk }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U helpdesk" --health-interval 5s --health-timeout 3s --health-retries 10
+    defaults: { run: { working-directory: api } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: api/package-lock.json }
+      - run: npm ci
+      - name: Run the same e2e suite against PostgreSQL
+        run: npm test
+        env:
+          DATABASE_URL: postgres://helpdesk:helpdesk@localhost:5432/helpdesk
+
+  web:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: web } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: web/package-lock.json }
+      - run: npm ci
+      - run: npm run build

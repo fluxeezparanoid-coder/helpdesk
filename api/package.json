@@ -1,0 +1,46 @@
+{
+  "name": "helpdesk-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Support ticket system API: NestJS, PostgreSQL, JWT, RBAC, Swagger",
+  "scripts": {
+    "build": "nest build",
+    "start": "node dist/main.js",
+    "start:dev": "nest start --watch",
+    "test": "jest --runInBand",
+    "seed": "node dist/seed.js"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/jwt": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/swagger": "^11.0.0",
+    "@nestjs/throttler": "^6.7.1",
+    "@nestjs/typeorm": "^11.0.0",
+    "argon2": "^0.45.1",
+    "better-sqlite3": "^12.11.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "helmet": "^8.3.0",
+    "multer": "^2.4.0",
+    "pg": "^8.23.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/testing": "^11.0.0",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/multer": "^2.3.0",
+    "@types/node": "^26.6.3",
+    "@types/supertest": "^7.2.1",
+    "jest": "^30.5.2",
+    "supertest": "^7.3.0",
+    "ts-jest": "^29.4.14",
+    "typescript": "^6.0.3"
+  }
+}
