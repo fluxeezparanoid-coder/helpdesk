@@ -2,6 +2,10 @@
 
 A support desk where customers open tickets, agents work a queue against **SLA timers**, and admins manage users and read a **security audit log**. NestJS + PostgreSQL API with JWT auth and role-based access, plus a React front end.
 
+**Live demo:** https://helpdesk-web-i6wr.onrender.com  (API docs: https://helpdesk-api-t41s.onrender.com/docs)
+
+> Free hosting: the API sleeps when idle, so the first request after a pause can take up to a minute. Demo logins are listed below.
+
 ![Agent dashboard](docs/02-dashboard.png)
 
 | Ticket queue with SLA countdowns | Ticket thread with internal notes |

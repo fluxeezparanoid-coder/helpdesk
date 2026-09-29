@@ -24,7 +24,7 @@ services:
         value: "true"
       - key: SEED_DEMO
         value: "true"
-      # Set after the first deploy to the static site's URL, e.g. https://helpdesk-web.onrender.com
+      # Set after the first deploy to the static site's URL (see the service page; Render may add a suffix to the name)
       - key: CORS_ORIGIN
         sync: false
       - key: UPLOAD_DIR
@@ -47,7 +47,7 @@ services:
       # Browser calls /api/* on the same origin; Render forwards it to the API service.
       - type: rewrite
         source: /api/*
-        destination: https://helpdesk-api.onrender.com/*
+        destination: https://helpdesk-api-t41s.onrender.com/*
       - type: rewrite
         source: /*
         destination: /index.html
